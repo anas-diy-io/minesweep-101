@@ -78,8 +78,7 @@ function revealCell(row, col) {
     board[row][col].isRevealed = true;
 
     if (board[row][col].isMine) {
-        alert('Game Over!');
-        revealAll();
+        explode(row, col);
     } else if (board[row][col].neighborMines === 0) {
         for (let x = -1; x <= 1; x++) {
             for (let y = -1; y <= 1; y++) {
@@ -90,6 +89,21 @@ function revealCell(row, col) {
 
     renderBoard();
     checkWin();
+}
+
+function explode(row, col) {
+    board[row][col].isRevealed = true;
+    renderBoard();
+
+    const whiteScreen = document.createElement('div');
+    whiteScreen.classList.add('white-screen');
+    document.body.appendChild(whiteScreen);
+
+    setTimeout(() => {
+        whiteScreen.remove();
+        alert('Game Over!');
+        revealAll();
+    }, 3000);
 }
 
 function revealAll() {
