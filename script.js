@@ -95,12 +95,12 @@ function explode(row, col) {
     board[row][col].isRevealed = true;
     renderBoard();
 
-    const whiteScreen = document.createElement('div');
-    whiteScreen.classList.add('white-screen');
-    document.body.appendChild(whiteScreen);
+    const gameOverScreen = document.createElement('div');
+    gameOverScreen.classList.add('game-over-screen');
+    document.body.appendChild(gameOverScreen);
 
     setTimeout(() => {
-        whiteScreen.remove();
+        gameOverScreen.remove();
         alert('Game Over!');
         revealAll();
     }, 3000);
